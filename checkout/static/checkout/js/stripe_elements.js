@@ -63,6 +63,8 @@ form.addEventListener('submit', function (ev) {
   // disable submission buttons during validation
   card.update({ 'disabled': true });
   $('#submit-button').attr('disabled', true);
+  $('#payment-form').fadeToggle(100);
+  $('#loading-overlay').fadeToggle(100);
 
   stripe.confirmCardPayment(clientSecret, {
     payment_method: {
@@ -80,6 +82,8 @@ form.addEventListener('submit', function (ev) {
       `;
       $(errorDiv).html(html);
       // re-enable the submit buttons
+      $('#payment-form').fadeToggle(100);
+      $('#loading-overlay').fadeToggle(100);
       card.update({ 'disabled': false });
       $('#submit-button').attr('disabled', false);
 
